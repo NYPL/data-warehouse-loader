@@ -1,0 +1,33 @@
+{
+  "name": "localhost",
+  "description": "localhost",
+  "require": {
+    "aura/sql": "2.5.1",
+    "monolog/monolog": "1.23",
+    "bramus/monolog-colored-line-formatter": "2.0",
+    "apache/avro": "1.8.2",
+    "vlucas/phpdotenv": "2.4",
+    "aws/aws-sdk-php": "^3.36"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "NYPL\\WarehouseExporter\\": [ "src/" ]
+    }
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "apache/avro",
+        "version": "1.8.2",
+        "source": {
+          "url": "https://github.com/apache/avro",
+          "type": "git",
+          "reference": "release-1.8.2"
+        }
+      }
+    }
+  ]
+}

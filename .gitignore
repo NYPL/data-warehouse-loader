@@ -1,0 +1,3 @@
+.env
+vendor
+exports/*.avr
