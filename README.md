@@ -1,6 +1,6 @@
-# Data Warehouse Loader (alpha)
+# Data Warehouse Loader (v1)
 
-This application is intended to export data from the Sierra Database and load it into AWS Redshift.
+This application is intended to export data from the Sierra Database and load it into AWS Redshift for the v1 of the Data Warehouse Project.
 
 This package adheres to [PSR-1](http://www.php-fig.org/psr/psr-1/), 
 [PSR-2](http://www.php-fig.org/psr/psr-2/), and [PSR-4](http://www.php-fig.org/psr/psr-4/) 
