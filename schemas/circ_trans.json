@@ -10,14 +10,6 @@
       "doc": "System-generated sequential ID."
     },
     {
-      "name": "item_id",
-      "type": [
-        "null",
-        "int"
-      ],
-      "doc": "Item ID for record"
-    },
-    {
       "name": "patron_id",
       "type": [
         "null",
@@ -26,12 +18,52 @@
       "doc": "De-identified Patron ID for record"
     },
     {
+      "name": "patron_record_id",
+      "type": [
+        "null",
+        "int"
+      ],
+      "doc": "A duplicate of patron_id for backwards compatibility"
+    },
+    {
+      "name": "item_id",
+      "type": [
+        "null",
+        "int"
+      ],
+      "doc": "Item ID for record"
+    },
+    {
+      "name": "item_record_id",
+      "type": [
+        "null",
+        "long"
+      ],
+      "doc": "Internal Item record ID for record"
+    },
+    {
       "name": "bib_id",
       "type": [
         "null",
         "int"
       ],
       "doc": "Bib ID for record"
+    },
+    {
+      "name": "bib_record_id",
+      "type": [
+        "null",
+        "long"
+      ],
+      "doc": "Internal Bib record ID for record"
+    },
+    {
+      "name": "volume_record_id",
+      "type": [
+        "null",
+        "long"
+      ],
+      "doc": "Internal Volume record ID for record"
     },
     {
       "name": "transaction_gmt",

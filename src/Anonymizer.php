@@ -15,10 +15,13 @@ class Anonymizer
             return $record;
         }
 
+        $anonymousPatronId = self::anonymousPatronId($record[$fieldName]);
+
         return array_merge(
             $record,
             [
-                $fieldName => self::anonymousPatronId($record[$fieldName])
+                $fieldName => $anonymousPatronId,
+                'patron_record_id' => $anonymousPatronId
             ]
         );
     }
@@ -30,14 +33,16 @@ class Anonymizer
      */
     protected static function anonymousPatronId($patronId = 0)
     {
-        if ($anonymousPatronId = RecordStorage::getRedis()->get('Patron:' . $patronId)) {
+        $keyName = 'Patron:' . $patronId;
+
+        if ($anonymousPatronId = RecordStorage::getRedis()->get($keyName)) {
             return (int) $anonymousPatronId;
         }
 
-        $nextPatronId = RecordStorage::getRedis()->incr('PatronIdCounter');
+        $anonymousPatronId = RecordStorage::getRedis()->incr('PatronIdCounter');
 
-        RecordStorage::getRedis()->set('Patron:' . $patronId, $nextPatronId);
+        RecordStorage::getRedis()->set($keyName, $anonymousPatronId);
 
-        return $nextPatronId;
+        return $anonymousPatronId;
     }
 }

@@ -103,18 +103,7 @@ class RecordExporter
         foreach ($records as $record) {
             ++self::$count;
 
-            $record = array_map(function ($value) {
-                if (is_string($value)) {
-                    return trim($value);
-                }
-                return $value;
-            }, $record);
-
-            RecordWriter::writeRecord(
-                $recordType,
-                Anonymizer::anonymizeRecord($record, self::PATRON_ID_FIELD),
-                $idField
-            );
+            self::processCircTrans($record, $idField);
         }
 
         return (int) $record[$idField];
@@ -129,5 +118,26 @@ class RecordExporter
     protected static function getRecords($recordType = '', $currentStartId = 0)
     {
         return RecordGetter::getRecords($recordType, $currentStartId, Config::get('MAX_RECORDS_PER_QUERY'));
+    }
+
+    /**
+     * @param array $record
+     * @param string $idField
+     * @throws \DomainException
+     */
+    protected static function processCircTrans($record = [], $idField = '')
+    {
+        $record = array_map(function ($value) {
+            if (is_string($value)) {
+                return trim($value);
+            }
+            return $value;
+        }, $record);
+
+        RecordWriter::writeRecord(
+            'circ_trans',
+            Anonymizer::anonymizeRecord($record, self::PATRON_ID_FIELD),
+            $idField
+        );
     }
 }
